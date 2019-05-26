@@ -14,9 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', function(){
-    return view('login');
-});
-Route::get('/dash', function(){
-    return view('dash');
-});
+// Route::get('/login', function(){
+//     return view('login');
+// });
+// Route::get('/dash', function(){
+//     return view('dash');
+// });
+
+Route::resource('empleos','EmpleosController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
