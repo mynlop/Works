@@ -18,8 +18,9 @@ class EmpleosController extends Controller
         
         $empleos = DB::table('empleos')
                 ->join('users','empleos.empresa_id','=','users.id')
-                ->where('estado','=',1)->paginate(5);
-
+                ->select('empleos.*','users.nombre')
+                ->where('estado','=',1)->paginate(10);
+        // return response()->json($empleos);
         return view('empleos.index', compact('empleos'));
     }
 
@@ -52,9 +53,10 @@ class EmpleosController extends Controller
      * @param  \App\Empleos  $empleos
      * @return \Illuminate\Http\Response
      */
-    public function show(Empleos $empleos)
+    public function show($id)
     {
-        //
+        $empleo = Empleos::findOrFail($id);
+        return view('empleos.show', compact('empleo'));
     }
 
     /**

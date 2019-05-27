@@ -17,7 +17,7 @@
             @foreach($empleos as $empleo)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $empleo->puesto }}</td>
+                <td><a href="{{ url('/empleos/' .$empleo->id) }}">{{ $empleo->puesto }}</a></td>
                 <td>{{ $empleo->salario_minimo }} - {{ $empleo->salario_maximo }}</td>
                 <td>{{ $empleo->correo_contacto}}</td>
                 <td>{{ $empleo->nombre }}</td>
