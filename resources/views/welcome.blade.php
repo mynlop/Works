@@ -56,5 +56,15 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="text-center">Sitio desarrollado por <strong>Mynor Lopez</strong> 2019 </p>
+                    </div>
+                </div>
+            </div>
+
     </div>
 @endsection
