@@ -51,14 +51,14 @@
                     <ul class="navbar-nav mr-auto">
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Ver Empleos</a>
+                                <a class="nav-link" href="{{ url('/empleos') }}">Ver Empleos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/') }}">Motivacion</a>
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/empleos') }}">Tabla empleos</a>
+                                <a class="nav-link" href="{{ url('/empleos') }}">Todos los empleos</a>
                             </li>
                         @endguest
                     </ul>
@@ -100,7 +100,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
     </div>

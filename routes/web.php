@@ -14,14 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/login', function(){
-//     return view('login');
-// });
-// Route::get('/dash', function(){
-//     return view('dash');
-// });
 
 Route::resource('empleos','EmpleosController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('users/{user}', ['as' => 'users.edit', 'uses' => 'UserController@edit']);
+Route::patch('users/{user}/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
