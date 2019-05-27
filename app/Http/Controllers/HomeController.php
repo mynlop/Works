@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Empleos;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('home', compact('user'));
+        $idUsuario = Auth::user()->id;
+        $empleos = Empleos::where('empresa_id','=',$idUsuario)->where('estado','=',1)->paginate(10);
+        return view('home', compact(['user','empleos']));
     }
 }

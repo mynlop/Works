@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Empleos;
 use Illuminate\Http\Request;
+use Auth;
 
 class EmpleosController extends Controller
 {
@@ -14,8 +15,9 @@ class EmpleosController extends Controller
      */
     public function index()
     {
-        $datos['empleos'] = Empleos::paginate(10);
-        return view('empleos.index', $datos);
+        $idUsuario = Auth::user()->id;
+        $empleos = Empleos::where('empresa_id','=',$idUsuario)->where('estado','=',1)->paginate(10);
+        return view('empleos.index', compact('empleos'));
     }
 
     /**
@@ -84,8 +86,10 @@ class EmpleosController extends Controller
      * @param  \App\Empleos  $empleos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empleos $empleos)
+    public function destroy($id)
     {
-        //
+        $datos = request()->except(['_token','_method']);
+        Empleos::where('id','=', $id)->update(['estado'=> 0]);
+        return redirect('empleos');
     }
 }

@@ -51,7 +51,7 @@
                     <ul class="navbar-nav mr-auto">
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Buscar</a>
+                                <a class="nav-link" href="#">Ver Empleos</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/') }}">Motivacion</a>
