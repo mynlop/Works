@@ -14,7 +14,8 @@ class EmpleosController extends Controller
      */
     public function index()
     {
-        //
+        $datos['empleos'] = Empleos::paginate(10);
+        return view('empleos.index', $datos);
     }
 
     /**
@@ -24,7 +25,7 @@ class EmpleosController extends Controller
      */
     public function create()
     {
-        //
+        return view('empleos.create');
     }
 
     /**
@@ -35,7 +36,9 @@ class EmpleosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = request()->except('_token');
+        Empleos::insert($datos);
+        return redirect('empleos');
     }
 
     /**
@@ -55,9 +58,10 @@ class EmpleosController extends Controller
      * @param  \App\Empleos  $empleos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empleos $empleos)
+    public function edit($id)
     {
-        //
+        $empleo = Empleos::findOrFail($id);
+        return view('empleos.edit', compact('empleo'));
     }
 
     /**
@@ -67,9 +71,11 @@ class EmpleosController extends Controller
      * @param  \App\Empleos  $empleos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empleos $empleos)
+    public function update(Request $request, $id)
     {
-        //
+        $datos = request()->except(['_token','_method']);
+        Empleos::where('id','=', $id)->update($datos);
+        return redirect('empleos');
     }
 
     /**
